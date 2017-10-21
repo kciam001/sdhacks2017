@@ -2,6 +2,12 @@ import analyze as analyze
 import json as json
 import collections
 
+def setHash():
+    keys = ["print", "+", "-", "*", "/", "if", "else"]
+    values = [["display","print","show"], ["add","+","sum"], ["subtract","-","minus"], ["multiply","*","product"], ["/","divide"], ["if","check"], ["else","otherwise"]]
+    hash = {k:v for k, v in zip(keys, values)}
+    return hash
+
 def entities(userIput):
     entitiesJSON = analyze.analyze_entities(userInput)
     toReturn = []
@@ -10,11 +16,18 @@ def entities(userIput):
     return toReturn
     
 def syntax(userInput):
-    intentMatch = open("./matchTable.json").read()
+    #intentMatch = open("./matchTable.json")
+    #intentMatchJSON = json.load(intentMatch)
+
+    intentHash = setHash();
+
+    #for i in intentHash:
+        #print (i, intentHash[i])
+
     analysisJSON = analyze.analyze_syntax(userInput)
     contentGroup = collections.namedtuple("content", 'tag content')
 
-    print ("Size: ", len(analysisJSON["tokens"]))
+    #print ("Size: ", len(analysisJSON["tokens"]))
 
     analyzedContent = [0 for i in range(0,len(analysisJSON["tokens"]))]
 
@@ -25,7 +38,12 @@ def syntax(userInput):
         analyzedContent[j] = curContentGroup
         j += 1
 
-    
+    for k in analyzedContent:
+        #print (k.content, " ")
+        for hashKey in intentHash:
+            #print (k, " ", intentHash[hashKey])
+            if k.content in intentHash[hashKey]:
+                print (k.content, " ", hashKey)
 
     return analyzedContent
     #print (json.dumps(analysisJSON, indent=2))
