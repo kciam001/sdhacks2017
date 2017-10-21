@@ -7,19 +7,17 @@ def setHash():
     values = [["display","print","show"], ["add","+","sum"], ["subtract","-","minus"], ["multiply","*","product"], ["/","divide"], ["if","check"], ["else","otherwise"]]
     hash = {k:v for k, v in zip(keys, values)}
     return hash
-
-def entities(userIput):
+    
+def entities(userIput, hash_table):
     entitiesJSON = analyze.analyze_entities(userInput)
     toReturn = []
     for entity in entitiesJSON["entities"]:
         toReturn.append((entity['name'], entity['salience']))
     return toReturn
     
-def syntax(userInput):
+def syntax(userInput, hash_table):
     #intentMatch = open("./matchTable.json")
     #intentMatchJSON = json.load(intentMatch)
-
-    intentHash = setHash();
 
     #for i in intentHash:
         #print (i, intentHash[i])
@@ -53,13 +51,19 @@ def syntax(userInput):
 
 if __name__ == '__main__':
 
-    userInput = input("Enter string:")
+    intentHash = setHash();
 
-    salience_list = entities(userInput)
-    if salience_list != []:
-        print(salience_list)
+    userInput = input("Enter string:")
+    
+    #check for words with salience, start search with that.
+    # salience_list = entities(userInput, intentHash)
+    # if salience_list != []:
+        # for pair in salience_list:
+            # salience_word = pair[0]
+            
+            
         
-    synReturn = syntax(userInput)
+    synReturn = syntax(userInput, intentHash)
 
     print (synReturn)
     
