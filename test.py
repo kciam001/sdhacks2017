@@ -3,7 +3,11 @@ import json as json
 import collections
 
 def entities(userIput):
-    return
+    entitiesJSON = analyze.analyze_entities(userInput)
+    toReturn = []
+    for entity in entitiesJSON["entities"]:
+        toReturn.append((entity['name'], entity['salience']))
+    return toReturn
     
 def syntax(userInput):
     intentMatch = open("./matchTable.json").read()
@@ -33,8 +37,9 @@ if __name__ == '__main__':
 
     userInput = input("Enter string:")
 
-    if entities(userInput) != []:
-        print("Entities detected! do something useful with them")
+    salience_list = entities(userInput)
+    if salience_list != []:
+        print(salience_list)
         
     synReturn = syntax(userInput)
 
