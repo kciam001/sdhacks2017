@@ -5,13 +5,13 @@ import subprocess
 import tkinter
 from tkinter import *
 
-def setHash():
-    keys = ["print", "+", "-", "*", "/", "if", "else"]
-    values = [["display","print","show"], ["add","+","sum"], ["subtract","-","minus"], ["multiply","*","product"], ["/","divide"], ["if","check"], ["else","otherwise"]]
-    hash = {k:v for k, v in zip(keys, values)}
-    return hash
+# def setHash():
+#     keys = ["print", "+", "-", "*", "/", "if", "else"]
+#     values = [["display","print","show"], ["add","+","sum"], ["subtract","-","minus"], ["multiply","*","product"], ["/","divide"], ["if","check"], ["else","otherwise"]]
+#     hash = {k:v for k, v in zip(keys, values)}
+#     return hash
     
-def entities(userInput, hash_table):
+def entities(userInput):
     entitiesJSON = analyze.analyze_entities(userInput)
     entitiesGroup = collections.namedtuple("entities", 'name salience')
     toReturn = []
@@ -20,7 +20,7 @@ def entities(userInput, hash_table):
         toReturn.append(curEntityGroup)
     return toReturn
     
-def syntax(userInput, hash_table):
+def syntax(userInput):
     #intentMatch = open("./matchTable.json")
     #intentMatchJSON = json.load(intentMatch)
 
@@ -78,23 +78,37 @@ def analyze_dos(ent_list, syn_list): #the "math"
     
 
 def main():
-    intentHash = setHash();
+    #intentHash = setHash();
     top = tkinter.Tk()
+
+    top.title("Pseudo++")
+
     L1 = Label(top, text="Enter String: ")
     L1.pack(side = LEFT)
     
-    E1 = Entry(top, bd=5)
-    E1.pack(side = 'bottom')
-    E1.focus_set()
+    
     
     userInput = ""
     
     def savetext():
         userInput = E1.get()
+        entReturn = entities(userInput) #list of pairs: [0] is word, [1] is saliency score
+        synReturn = syntax(userInput) #list of contents(pairs), each index is a word in the user input, pair.tag, pair.content
+
+        split_UI_List = analyze_dos(entReturn, synReturn)
+        print(split_UI_List)
+        file = open('split_input.dat','w')
+        for text in split_UI_List:
+            file.write(text + '\n')
+        p = subprocess.Popen(r'start cmd /c .\etot2.bat', shell=True)
         top.quit()
         
     B = tkinter.Button(top, text="Click me!", command = savetext)
     B.pack(side='right')
+
+    E1 = Entry(top, width=45)
+    E1.pack(side = 'right')
+    E1.focus_set()
     top.mainloop()
     
     
@@ -105,15 +119,7 @@ def main():
     # if salience_list != []:
         # for pair in salience_list:
             # salience_word = pair[0]
-    entReturn = entities(userInput, intentHash) #list of pairs: [0] is word, [1] is saliency score
-    synReturn = syntax(userInput, intentHash) #list of contents(pairs), each index is a word in the user input, pair.tag, pair.content
-
-    split_UI_List = analyze_dos(entReturn, synReturn)
-    print(split_UI_List)
-    file = open('split_input.dat','w')
-    for text in split_UI_List:
-        file.write(text + '\n')
-    p = subprocess.Popen(r'start cmd /c .\etot2.bat', shell=True)
+    #This is where the old code goes, YO!
     
     # temp = input("Duskull :3")
     
