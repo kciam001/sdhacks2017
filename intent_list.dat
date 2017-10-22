@@ -1,1 +1,1 @@
-action=math args={ op=multiply arg1=2 arg2=4 }
+action=print args={ text=greetings earthlings }

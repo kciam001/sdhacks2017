@@ -1,1 +1,1 @@
-var0 = 2*4
+print("greetings earthlings ")
