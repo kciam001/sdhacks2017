@@ -1,0 +1,2 @@
+action=print args={ text=hello world }
+action=print args={ text=hello andre }
