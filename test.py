@@ -85,10 +85,12 @@ def main():
 
     split_UI_List = analyze_dos(entReturn, synReturn)
     print(split_UI_List)
-    # file
+    file = open('split_input.dat','w')
+    for text in split_UI_List:
+        file.write(text + '\n')
     # p = subprocess.Popen(r'start cmd /c C:\Users\Andre\Desktop\etot2.bat', shell=True)
     
-    # temp = input("Duskull :3")
+    temp = input("Duskull :3")
     
     #for i in syntax_json["tokens"]:
         #print (i["partOfSpeech"]["tag"], "\t", i["text"]["content"], "\n")
