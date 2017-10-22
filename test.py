@@ -49,10 +49,10 @@ def syntax(userInput, hash_table):
     #print ("\t", analysisJSON["tokens"][0]["partOfSpeech"]["tag"])
     #return analysisJSON
 
-if __name__ == '__main__':
-
+   
+def main(argv=none):
+    #refer to argv[0] or any other index to get the arguments
     intentHash = setHash();
-
     userInput = input("Enter string:")
     
     #check for words with salience, start search with that.
@@ -61,14 +61,15 @@ if __name__ == '__main__':
         # for pair in salience_list:
             # salience_word = pair[0]
             
-            
-        
     synReturn = syntax(userInput, intentHash)
 
     print (synReturn)
-    
+    sys.exit(main(sys.argv[1:])) #removes first command line argument because thats just the name of this file
     
     #for i in syntax_json["tokens"]:
         #print (i["partOfSpeech"]["tag"], "\t", i["text"]["content"], "\n")
     
     #print (userInput)
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:])) #removes first command line argument because thats just the name of this file
