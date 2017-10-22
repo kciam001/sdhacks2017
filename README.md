@@ -6,8 +6,10 @@ Insted of having strict syntax rules, Psuedo++ allows users to
 input instructions in plain english while the computer 
 translates and generates the respective code. For example:
 
+User input:
 `print king kunta and add 2 and 5`
 
+Program Output:
 ```python
 print("king kunta")
 var0 = 2 + 5
