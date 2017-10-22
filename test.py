@@ -11,9 +11,11 @@ def setHash():
     
 def entities(userInput, hash_table):
     entitiesJSON = analyze.analyze_entities(userInput)
+    entitiesGroup = collections.namedtuple("entities", 'name salience')
     toReturn = []
     for entity in entitiesJSON["entities"]:
-        toReturn.append((entity['name'], entity['salience']))
+        curEntityGroup = entitiesGroup(name=entity['name'], salience=entity['salience'])
+        toReturn.append(curEntityGroup)
     return toReturn
     
 def syntax(userInput, hash_table):
