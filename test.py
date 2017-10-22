@@ -54,8 +54,22 @@ def syntax(userInput, hash_table):
 
    
 def analyze_dos(ent_list, syn_list): #the "math"
-    
-    return"YOOO"
+    split_executions = []
+    i = 0
+    string = ""
+    for pair in syn_list:
+        if pair.tag != 'VERB' or i==0:
+            string += pair.content + ' '
+        else:
+            if syn_list[i-1].tag == 'CONJ':
+                string = string[:-(len(syn_list[i-1].content) + 1)]
+                # print(string)
+            split_executions.append(string)
+            string = pair.content + ' '
+        i += 1
+    if string != "": #if string isnt empty
+        split_executions.append(string)
+    return split_executions
    
 def main():
     intentHash = setHash();
@@ -70,10 +84,11 @@ def main():
     synReturn = syntax(userInput, intentHash) #list of contents(pairs), each index is a word in the user input, pair.tag, pair.content
 
     split_UI_List = analyze_dos(entReturn, synReturn)
-    
+    print(split_UI_List)
+    # file
     # p = subprocess.Popen(r'start cmd /c C:\Users\Andre\Desktop\etot2.bat', shell=True)
     
-    temp = input("Duskull :3")
+    # temp = input("Duskull :3")
     
     #for i in syntax_json["tokens"]:
         #print (i["partOfSpeech"]["tag"], "\t", i["text"]["content"], "\n")
