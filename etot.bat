@@ -1,4 +1,4 @@
 echo starting...
 title EToT
-:: .\env\Scripts\activate
+.\env\Scripts\activate
 python test.py
