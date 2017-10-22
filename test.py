@@ -88,9 +88,9 @@ def main():
     file = open('split_input.dat','w')
     for text in split_UI_List:
         file.write(text + '\n')
-    # p = subprocess.Popen(r'start cmd /c C:\Users\Andre\Desktop\etot2.bat', shell=True)
+    p = subprocess.Popen(r'start cmd /c .\etot2.bat', shell=True)
     
-    temp = input("Duskull :3")
+    # temp = input("Duskull :3")
     
     #for i in syntax_json["tokens"]:
         #print (i["partOfSpeech"]["tag"], "\t", i["text"]["content"], "\n")
