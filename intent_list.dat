@@ -1,1 +1,2 @@
-action=print args={ text=greetings earthlings }
+action=print args={ text=hello world }
+action=math args={ op=add arg1=2 op=and arg2=2 }

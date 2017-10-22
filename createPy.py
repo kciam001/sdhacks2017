@@ -1,3 +1,6 @@
+import tkinter
+from tkinter import *
+
 def main():
     file = open('intent_list.dat','r');
     intentList = []
@@ -23,6 +26,7 @@ def main():
             leftArg = ""
             rightArg = ""
             op = ""
+            opBool = False
             for i in argsList:
                 arg1Found = i.find("arg1")
                 arg2Found = i.find("arg2")
@@ -31,7 +35,8 @@ def main():
                     leftArg = i[5:]
                 if (arg2Found != -1):
                     rightArg = i[5:]
-                if (opFound != -1):
+                if (opFound != -1 and not opBool):
+                    opBool = True
                     op = i[3:]
                     if (op == "add"):
                         op = "+"
@@ -93,3 +98,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+    root = tkinter.Tk()
+    root.title("Output Data")
+
+    T = Text(root, height=2, width=30)
+
+    T.pack()
+
+    myfile = open('outputPy.py','r')
+    loadedfile = myfile.read()
+    myfile.close()
+    T.insert("end", loadedfile)
+    root.mainloop()

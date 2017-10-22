@@ -1,1 +1,2 @@
-print("greetings earthlings ")
+print("hello world ")
+var0 = 2+2
