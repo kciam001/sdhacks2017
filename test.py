@@ -2,6 +2,8 @@ import analyze as analyze
 import json as json
 import collections
 import subprocess
+import tkinter
+from tkinter import *
 
 def setHash():
     keys = ["print", "+", "-", "*", "/", "if", "else"]
@@ -73,10 +75,30 @@ def analyze_dos(ent_list, syn_list): #the "math"
     if string != "": #if string isnt empty
         split_executions.append(string)
     return split_executions
-   
+    
+
 def main():
     intentHash = setHash();
-    userInput = input("Enter string:")
+    top = tkinter.Tk()
+    L1 = Label(top, text="Enter String: ")
+    L1.pack(side = LEFT)
+    
+    E1 = Entry(top, bd=5)
+    E1.pack(side = 'bottom')
+    E1.focus_set()
+    
+    userInput = ""
+    
+    def savetext():
+        userInput = E1.get()
+        top.quit()
+        
+    B = tkinter.Button(top, text="Click me!", command = savetext)
+    B.pack(side='right')
+    top.mainloop()
+    
+    
+    # userInput = input("Enter string:")
     
     #check for words with salience, start search with that.
     # salience_list = entities(userInput, intentHash)
