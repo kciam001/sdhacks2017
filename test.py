@@ -1,6 +1,7 @@
 import analyze as analyze
 import json as json
 import collections
+import subprocess
 
 def setHash():
     keys = ["print", "+", "-", "*", "/", "if", "else"]
@@ -8,7 +9,7 @@ def setHash():
     hash = {k:v for k, v in zip(keys, values)}
     return hash
     
-def entities(userIput, hash_table):
+def entities(userInput, hash_table):
     entitiesJSON = analyze.analyze_entities(userInput)
     toReturn = []
     for entity in entitiesJSON["entities"]:
@@ -36,12 +37,12 @@ def syntax(userInput, hash_table):
         analyzedContent[j] = curContentGroup
         j += 1
 
-    for k in analyzedContent:
-        #print (k.content, " ")
-        for hashKey in intentHash:
-            #print (k, " ", intentHash[hashKey])
-            if k.content in intentHash[hashKey]:
-                print (k.content, " ", hashKey)
+    # for k in analyzedContent:
+        # # print (k.content, " ")
+        # for hashKey in hash_table:
+            # # print (k, " ", intentHash[hashKey])
+            # if k.content in hash_table[hashKey]:
+                # print (k.content, " ", hashKey)
 
     return analyzedContent
     #print (json.dumps(analysisJSON, indent=2))
@@ -50,8 +51,11 @@ def syntax(userInput, hash_table):
     #return analysisJSON
 
    
-def main(argv=none):
-    #refer to argv[0] or any other index to get the arguments
+def analyze_dos(ent_list, syn_list): #the "math"
+    
+    return"YOOO"
+   
+def main():
     intentHash = setHash();
     userInput = input("Enter string:")
     
@@ -60,11 +64,14 @@ def main(argv=none):
     # if salience_list != []:
         # for pair in salience_list:
             # salience_word = pair[0]
-            
-    synReturn = syntax(userInput, intentHash)
+    entReturn = entities(userInput, intentHash) #list of pairs: [0] is word, [1] is saliency score
+    synReturn = syntax(userInput, intentHash) #list of contents(pairs), each index is a word in the user input, pair.tag, pair.content
 
-    print (synReturn)
-    sys.exit(main(sys.argv[1:])) #removes first command line argument because thats just the name of this file
+    split_UI_List = analyze_dos(entReturn, synReturn)
+    
+    # p = subprocess.Popen(r'start cmd /c C:\Users\Andre\Desktop\etot2.bat', shell=True)
+    
+    temp = input("Duskull :3")
     
     #for i in syntax_json["tokens"]:
         #print (i["partOfSpeech"]["tag"], "\t", i["text"]["content"], "\n")
@@ -72,4 +79,5 @@ def main(argv=none):
     #print (userInput)
 
 if __name__ == '__main__':
-    sys.exit(main(sys.argv[1:])) #removes first command line argument because thats just the name of this file
+    # sys.exit(main(sys.argv[1:])) #removes first command line argument because thats just the name of this file
+    main()
