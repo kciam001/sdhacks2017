@@ -57,9 +57,12 @@ def analyze_dos(ent_list, syn_list): #the "math"
     split_executions = []
     i = 0
     string = ""
+    print (syn_list)
     for pair in syn_list:
-        if pair.tag != 'VERB' or i==0:
+        if (pair.tag != 'VERB' or i==0) and pair.content not in ['>','<']:
             string += pair.content + ' '
+        elif (pair.tag != 'VERB' or i==0) and pair.content in ['>','<']:
+            string += pair.content
         else:
             if syn_list[i-1].tag == 'CONJ':
                 string = string[:-(len(syn_list[i-1].content) + 1)]

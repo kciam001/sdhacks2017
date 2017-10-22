@@ -1,2 +1,2 @@
-action=print args={ text=hello world }
-action=print args={ text=hello andre }
+action=loop args={ }
+action=print args={ text=greetings }
