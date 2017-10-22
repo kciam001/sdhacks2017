@@ -9,7 +9,7 @@ translates and generates the respective code. For example:
 `print king kunta and add 2 and 5`
 
 ```python
-print("king kuna")
+print("king kunta")
 var0 = 2 + 5
 ```
 
@@ -21,7 +21,8 @@ Special thanks:<br>
 * [Google cloud natural-language api](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/master/language)
 * [NLP tool written in Java](https://github.com/mlehman/nlp-intent-toolkit)
 * Python tkinter for the gui
-* And lastly (but certainly not least) SD Hacks 2017! For providing us with such a great hacking space and free food :+1:
+* And lastly (but certainly not least) [SD Hacks 2017!](https://www.sdhacks.io/) For providing
+us with such a great hacking space and free food :smile::+1:
 
 
 As the creator of python once said
