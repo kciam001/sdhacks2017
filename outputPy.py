@@ -1,2 +1,1 @@
-while ():
-	print("greetings ")
+var0 = 2*4

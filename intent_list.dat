@@ -1,2 +1,1 @@
-action=loop args={ }
-action=print args={ text=greetings }
+action=math args={ op=multiply arg1=2 arg2=4 }

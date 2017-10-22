@@ -71,6 +71,14 @@ def main():
                     arg1 = i[5:]
                 if (logicFound != -1):
                     logic = i[6:]
+                    if (logic == "greater than"):
+                        logic = ">"
+                    elif (logic == "greater than or equal to"):
+                        logic = ">="
+                    elif (logic == "less than"):
+                        logic = "<"
+                    elif (logic == "less than or equal to"):
+                        logic = "<="
                 if (targetFound != -1):
                     target = i[7:]
                 if (opFound != -1):
